@@ -2,7 +2,7 @@ import React from "react";
 
 import Header from "../partials/Header";
 
-function ResetPassword() {
+function PrivacyPolicy() {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       {/*  Site header */}
@@ -449,4 +449,4 @@ function ResetPassword() {
   );
 }
 
-export default ResetPassword;
+export default PrivacyPolicy;
