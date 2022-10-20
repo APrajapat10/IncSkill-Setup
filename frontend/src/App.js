@@ -5,11 +5,20 @@ import store from "./store";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
-import Register from "./components/auth/Register";
-import Login from "./components/auth/Login";
-import PrivateRoute from "./components/private-route/PrivateRoute";
-import Dashboard from "./components/dashboard/Dashboard";
 import "./scss/style.scss";
+// Containers
+const DefaultLayout = React.lazy(() =>
+  import("./components/layout/DefaultLayout")
+);
+
+const Register = React.lazy(() => import("./components/auth/Register"));
+const Login = React.lazy(() => import("./components/auth/Login"));
+const PrivateRoute = React.lazy(() =>
+  import("./components/private-route/PrivateRoute")
+);
+const Dashboard = React.lazy(() => import("./components/dashboard/Dashboard"));
+const Page404 = React.lazy(() => import("./components/errors/Page404"));
+const Page500 = React.lazy(() => import("./components/errors/Page500"));
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -46,6 +55,9 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
+            <Route exact path="/404" name="Page 404" component={Page404} />
+            <Route exact path="/500" name="Page 500" component={Page500} />
+            <Route path="*" name="Home" element={DefaultLayout} />
           </Suspense>
         </BrowserRouter>
       </Provider>

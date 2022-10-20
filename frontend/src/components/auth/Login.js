@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import classnames from "classnames";
 
 import {
   CButton,
@@ -92,7 +93,14 @@ class Login extends Component {
                           error={errors.email}
                           id="email"
                           type="email"
+                          className={classnames("", {
+                            invalid: errors.email || errors.emailnotfound,
+                          })}
                         />
+                        <span className="text-danger">
+                          {errors.email}
+                          {errors.emailnotfound}
+                        </span>
                       </CInputGroup>
                       <CInputGroup className="mb-4">
                         <CInputGroupText>
@@ -107,6 +115,10 @@ class Login extends Component {
                           error={errors.password}
                           id="password"
                         />
+                        <span className="text-danger">
+                          {errors.password}
+                          {errors.passwordincorrect}
+                        </span>
                       </CInputGroup>
                       <CRow>
                         <CCol xs={6}>
