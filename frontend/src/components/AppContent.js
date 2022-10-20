@@ -17,7 +17,7 @@ const AppContent = () => {
                 path={route.path}
                 exact={route.exact}
                 name={route.name}
-                element={<route.element />}
+                component={route.element}
               />
             )
           );

@@ -16,7 +16,6 @@ const Login = React.lazy(() => import("./components/auth/Login"));
 const PrivateRoute = React.lazy(() =>
   import("./components/private-route/PrivateRoute")
 );
-const Dashboard = React.lazy(() => import("./components/dashboard/Dashboard"));
 const Page404 = React.lazy(() => import("./components/errors/Page404"));
 const Page500 = React.lazy(() => import("./components/errors/Page500"));
 // Check for token to keep user logged in
@@ -53,11 +52,16 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute
+                exact
+                path="/dashboard"
+                name="Dashboard"
+                component={DefaultLayout}
+              />
+              <Route path="*" name="Home" component={DefaultLayout} />
             </Switch>
             <Route exact path="/404" name="Page 404" component={Page404} />
             <Route exact path="/500" name="Page 500" component={Page500} />
-            <Route path="*" name="Home" element={DefaultLayout} />
           </Suspense>
         </BrowserRouter>
       </Provider>
