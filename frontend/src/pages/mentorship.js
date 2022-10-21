@@ -81,6 +81,7 @@ const Mentorship = () => {
                   label="Yes"
                   defaultChecked={values.disability === "Yes"}
                   onChange={() => setFieldValue("disability", "Yes")}
+                  required
                 />
                 <CFormCheck
                   type="radio"
@@ -90,6 +91,7 @@ const Mentorship = () => {
                   label="No"
                   defaultChecked={values.disability === "No"}
                   onChange={() => setFieldValue("disability", "No")}
+                  required
                 />
                 <CFormCheck
                   type="radio"
@@ -99,6 +101,7 @@ const Mentorship = () => {
                   label="Do not wish to disclose"
                   defaultChecked={values.disability === "not disclose"}
                   onChange={() => setFieldValue("disability", "not disclose")}
+                  required
                 />
               </CCol>
             </fieldset>
@@ -113,6 +116,7 @@ const Mentorship = () => {
                   label="Male"
                   checked={values.gender === "male"}
                   onChange={() => setFieldValue("gender", "male")}
+                  required
                 />
                 <CFormCheck
                   type="radio"
@@ -122,6 +126,7 @@ const Mentorship = () => {
                   label="Female"
                   checked={values.gender === "female"}
                   onChange={() => setFieldValue("gender", "female")}
+                  required
                 />
                 <CFormCheck
                   type="radio"
@@ -131,6 +136,7 @@ const Mentorship = () => {
                   label="Other"
                   checked={values.gender === "other"}
                   onChange={() => setFieldValue("gender", "other")}
+                  required
                 />
                 <CFormCheck
                   type="radio"
@@ -140,6 +146,7 @@ const Mentorship = () => {
                   label="Do not wish to disclose"
                   checked={values.gender === "not disclose"}
                   onChange={() => setFieldValue("gender", "not disclose")}
+                  required
                 />
               </CCol>
             </fieldset>
@@ -151,6 +158,7 @@ const Mentorship = () => {
               options={updatedCountries}
               value={values.country}
               onChange={(value) => setFieldValue("country", value)}
+              required
             ></Select>
             <br></br>
             <CFormLabel htmlFor="state">State</CFormLabel>
@@ -163,6 +171,7 @@ const Mentorship = () => {
               )}
               value={values.state}
               onChange={(value) => setFieldValue("state", value)}
+              required
             ></Select>
             <br></br>
             <CFormLabel htmlFor="city">City</CFormLabel>
@@ -173,6 +182,7 @@ const Mentorship = () => {
               options={updatedCities(values.state ? values.state.value : null)}
               value={values.city}
               onChange={(value) => setFieldValue("city", value)}
+              required
             ></Select>
             <br></br>
             <CFormSelect
@@ -180,6 +190,7 @@ const Mentorship = () => {
               label="Industry/work you are interested in"
               value={Formik.values.industry}
               onChange={Formik.handleChange}
+              required
             >
               <option value="Engineering and Architecture">
                 Engineering and Architecture
@@ -223,6 +234,7 @@ const Mentorship = () => {
               id="currentJobPosition"
               onChange={Formik.handleChange}
               value={Formik.values.currentJobPosition}
+              required
             />
             <br></br>
             <fieldset className="row mb-3">
@@ -238,6 +250,7 @@ const Mentorship = () => {
                   label="Mentee"
                   checked={values.signUpAs === "mentee"}
                   onChange={() => setFieldValue("signUpAs", "mentee")}
+                  required
                 />
                 <CFormCheck
                   type="radio"
@@ -247,6 +260,7 @@ const Mentorship = () => {
                   label="Mentor"
                   checked={values.signUpAs === "mentor"}
                   onChange={() => setFieldValue("signUpAs", "mentor")}
+                  required
                 />
                 <CFormCheck
                   type="radio"
@@ -256,6 +270,7 @@ const Mentorship = () => {
                   label="Both"
                   checked={values.signUpAs === "both"}
                   onChange={() => setFieldValue("signUpAs", "both")}
+                  required
                 />
               </CCol>
             </fieldset>
