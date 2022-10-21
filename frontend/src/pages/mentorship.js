@@ -1,18 +1,22 @@
 import React from "react";
 import {
   CCard,
-  CCardHeader,
   CCardBody,
+  CCardHeader,
+  CForm,
+  CButton,
   CFormCheck,
   CFormSelect,
+  CCol,
+  CFormLabel,
+  CFormInput,
 } from "@coreui/react";
-const mentorship = () => {
+
+const Mentorship = () => {
   return (
     <>
       <CCard className="mb-4">
-        <CCardHeader>
-          <p className="h2">Mentorship</p>
-        </CCardHeader>
+        <CCardHeader>Mentorship</CCardHeader>
         <CCardBody>
           <p>
             Complete this form to sign up for a meeting with a mentor in the
@@ -27,171 +31,110 @@ const mentorship = () => {
       </CCard>
       <CCard className="mb-4">
         <CCardBody>
-          <p className="h6">Are you a person with disability? *</p>
-          <CFormCheck
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
-            label="Yes"
-          />
-          <CFormCheck
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
-            label="No"
-            defaultChecked
-          />
-          <CFormCheck
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
-            label="Donot wish to disclose"
-            defaultChecked
-          />
-        </CCardBody>
-        <CCardBody>
-          <p className="h6">Gender *</p>
-          <CFormCheck
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
-            label="Male"
-          />
-          <CFormCheck
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
-            label="Female"
-            defaultChecked
-          />
-          <CFormCheck
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
-            label="Other"
-            defaultChecked
-          />
-          <CFormCheck
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
-            label="Donot wish to disclose"
-            defaultChecked
-          />
-        </CCardBody>
-        <CCardHeader>
-          <p className="h6">Location *</p>
-        </CCardHeader>
-        <CCardBody>
-          <CFormSelect aria-label="Default select example">
-            <option>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </CFormSelect>
-        </CCardBody>
-      </CCard>
-      <CCard className="mb-4">
-        <CCardHeader>Inline text elements</CCardHeader>
-        <CCardBody>
-          <p>
-            Traditional heading elements are designed to work best in the meat
-            of your page content. When you need a heading to stand out, consider
-            using a <strong>display heading</strong>
-            —a larger, slightly more opinionated heading style.
-          </p>
-          <div className="bd-example">
-            <p>
-              You can use the mark tag to <mark>highlight</mark> text.
-            </p>
-            <p>
-              <del>
-                This line of text is meant to be treated as deleted text.
-              </del>
-            </p>
-            <p>
-              <s>
-                This line of text is meant to be treated as no longer accurate.
-              </s>
-            </p>
-            <p>
-              <ins>
-                This line of text is meant to be treated as an addition to the
-                document.
-              </ins>
-            </p>
-            <p>
-              <u>This line of text will render as underlined</u>
-            </p>
-            <p>
-              <small>
-                This line of text is meant to be treated as fine print.
-              </small>
-            </p>
-            <p>
-              <strong>This line rendered as bold text.</strong>
-            </p>
-            <p>
-              <em>This line rendered as italicized text.</em>
-            </p>
-          </div>
-        </CCardBody>
-      </CCard>
-      <CCard className="mb-4">
-        <CCardHeader>Description list alignment</CCardHeader>
-        <CCardBody>
-          <p>
-            Align terms and descriptions horizontally by using our grid system’s
-            predefined classes (or semantic mixins). For longer terms, you can
-            optionally add a{" "}
-            <code className="highlighter-rouge">.text-truncate</code> class to
-            truncate the text with an ellipsis.
-          </p>
-          <div className="bd-example">
-            <dl className="row">
-              <dt className="col-sm-3">Description lists</dt>
-              <dd className="col-sm-9">
-                A description list is perfect for defining terms.
-              </dd>
-
-              <dt className="col-sm-3">Euismod</dt>
-              <dd className="col-sm-9">
-                <p>
-                  Vestibulum id ligula porta felis euismod semper eget lacinia
-                  odio sem nec elit.
-                </p>
-                <p>Donec id elit non mi porta gravida at eget metus.</p>
-              </dd>
-
-              <dt className="col-sm-3">Malesuada porta</dt>
-              <dd className="col-sm-9">
-                Etiam porta sem malesuada magna mollis euismod.
-              </dd>
-
-              <dt className="col-sm-3 text-truncate">
-                Truncated term is truncated
-              </dt>
-              <dd className="col-sm-9">
-                Fusce dapibus, tellus ac cursus commodo, tortor mauris
-                condimentum nibh, ut fermentum massa justo sit amet risus.
-              </dd>
-
-              <dt className="col-sm-3">Nesting</dt>
-              <dd className="col-sm-9">
-                <dl className="row">
-                  <dt className="col-sm-4">Nested definition list</dt>
-                  <dd className="col-sm-8">
-                    Aenean posuere, tortor sed cursus feugiat, nunc augue
-                    blandit nunc.
-                  </dd>
-                </dl>
-              </dd>
-            </dl>
-          </div>
+          <CForm>
+            <fieldset className="row mb-3">
+              <legend className="col-form-label col-sm-2 pt-0">
+                Are you a person with disability ?
+              </legend>
+              <CCol sm={10}>
+                <CFormCheck
+                  type="radio"
+                  name="gridRadios1"
+                  id="gridRadios1"
+                  value="yes"
+                  label="Yes"
+                  defaultChecked
+                />
+                <CFormCheck
+                  type="radio"
+                  name="gridRadios2"
+                  id="gridRadios2"
+                  value="no"
+                  label="No"
+                />
+                <CFormCheck
+                  type="radio"
+                  name="gridRadios3"
+                  id="gridRadios3"
+                  value="not disclose"
+                  label="Donot wish to disclose"
+                />
+              </CCol>
+            </fieldset>
+            <fieldset className="row mb-3">
+              <legend className="col-form-label col-sm-2 pt-0">Gender</legend>
+              <CCol sm={10}>
+                <CFormCheck
+                  type="radio"
+                  name="male"
+                  id="male"
+                  value="male"
+                  label="Male"
+                  defaultChecked
+                />
+                <CFormCheck
+                  type="radio"
+                  name="female"
+                  id="female"
+                  value="female"
+                  label="Female"
+                />
+                <CFormCheck
+                  type="radio"
+                  name="other"
+                  id="other"
+                  value="other"
+                  label="Other"
+                />
+                <CFormCheck
+                  type="radio"
+                  name="notDisclose"
+                  id="notDisclose"
+                  value="not disclose"
+                  label="Donot wish to disclose"
+                />
+              </CCol>
+            </fieldset>
+            <CFormSelect id="inputCountry" label="Country">
+              <option>Choose...</option>
+              <option>...</option>
+            </CFormSelect>
+            <br></br>
+            <CFormSelect id="inputState" label="State">
+              <option>Choose...</option>
+              <option>...</option>
+            </CFormSelect>
+            <br></br>
+            <CFormSelect id="inputCity" label="City">
+              <option>Choose...</option>
+              <option>...</option>
+            </CFormSelect>
+            <br></br>
+            <CFormSelect
+              id="industry"
+              label="Industry/work you are interested in"
+            >
+              <option>Choose...</option>
+              <option>...</option>
+            </CFormSelect>
+            <br></br>
+            <CFormLabel htmlFor="exampleFormControlTextarea1">
+              What is your current job position? (e.g. student at IIT Delhi,
+              software engineer at Intel, Secretary in Ministry of Health etc.)
+              *
+            </CFormLabel>
+            <CFormInput
+              type="text"
+              placeholder="Current Job Position"
+              aria-label="Current Job Position"
+            />
+            <br></br>
+            <CButton type="submit">Submit Application</CButton>
+          </CForm>
         </CCardBody>
       </CCard>
     </>
   );
 };
 
-export default mentorship;
+export default Mentorship;
