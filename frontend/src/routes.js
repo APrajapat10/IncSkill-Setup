@@ -75,9 +75,10 @@ const Modals = React.lazy(() => import("./views/notifications/modals/Modals"));
 const Toasts = React.lazy(() => import("./views/notifications/toasts/Toasts"));
 
 const Widgets = React.lazy(() => import("./views/widgets/Widgets"));
-
+const Mentorship = React.lazy(() => import("./pages/mentorship"));
 const routes = [
   { path: "/", exact: true, name: "Home" },
+  { path: "/mentorship", name: "Mentorship", element: Mentorship },
   { path: "/dashboard", name: "Dashboard", element: Dashboard },
   { path: "/theme", name: "Theme", element: Colors, exact: true },
   { path: "/theme/colors", name: "Colors", element: Colors },

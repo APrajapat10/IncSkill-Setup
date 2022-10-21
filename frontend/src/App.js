@@ -58,7 +58,7 @@ class App extends Component {
                 name="Dashboard"
                 component={DefaultLayout}
               />
-              {/* <Route path="*" name="Home" component={DefaultLayout} /> */}
+              <Route path="*" name="Home" component={DefaultLayout} />
             </Switch>
             <Route exact path="/404" name="Page 404" component={Page404} />
             <Route exact path="/500" name="Page 500" component={Page500} />
