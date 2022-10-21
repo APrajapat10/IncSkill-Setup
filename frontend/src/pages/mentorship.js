@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useFormik } from "formik";
+import csc from "country-state-city";
+import Select from "react-select";
 import {
   CCard,
   CCardBody,
@@ -13,6 +16,34 @@ import {
 } from "@coreui/react";
 
 const Mentorship = () => {
+  const addressFromik = useFormik({
+    initialValues: {
+      country: "United States",
+      state: null,
+      city: null,
+    },
+    onSubmit: (values) => console.log(JSON.stringify(values)),
+  });
+
+  const countries = csc.getAllCountries();
+
+  const updatedCountries = countries.map((country) => ({
+    label: country.name,
+    value: country.id,
+    ...country,
+  }));
+  const updatedStates = (countryId) =>
+    csc
+      .getStatesOfCountry(countryId)
+      .map((state) => ({ label: state.name, value: state.id, ...state }));
+  const updatedCities = (stateId) =>
+    csc
+      .getCitiesOfState(stateId)
+      .map((city) => ({ label: city.name, value: city.id, ...city }));
+
+  const { values, handleSubmit, setFieldValue, setValues } = addressFromik;
+
+  useEffect(() => {}, [values]);
   return (
     <>
       <CCard className="mb-4">
@@ -31,7 +62,7 @@ const Mentorship = () => {
       </CCard>
       <CCard className="mb-4">
         <CCardBody>
-          <CForm>
+          <CForm onSubmit={handleSubmit}>
             <fieldset className="row mb-3">
               <legend className="col-form-label col-sm-2 pt-0">
                 Are you a person with disability ?
@@ -39,25 +70,25 @@ const Mentorship = () => {
               <CCol sm={10}>
                 <CFormCheck
                   type="radio"
-                  name="gridRadios1"
-                  id="gridRadios1"
+                  name="nameRadio"
+                  id="nameRadio1"
                   value="yes"
                   label="Yes"
                   defaultChecked
                 />
                 <CFormCheck
                   type="radio"
-                  name="gridRadios2"
-                  id="gridRadios2"
+                  name="nameRadio"
+                  id="nameRadio2"
                   value="no"
                   label="No"
                 />
                 <CFormCheck
                   type="radio"
-                  name="gridRadios3"
-                  id="gridRadios3"
+                  name="nameRadio"
+                  id="nameRadio3"
                   value="not disclose"
-                  label="Donot wish to disclose"
+                  label="Do not wish to disclose"
                 />
               </CCol>
             </fieldset>
@@ -66,7 +97,7 @@ const Mentorship = () => {
               <CCol sm={10}>
                 <CFormCheck
                   type="radio"
-                  name="male"
+                  name="gender"
                   id="male"
                   value="male"
                   label="Male"
@@ -74,41 +105,68 @@ const Mentorship = () => {
                 />
                 <CFormCheck
                   type="radio"
-                  name="female"
+                  name="gender"
                   id="female"
                   value="female"
                   label="Female"
                 />
                 <CFormCheck
                   type="radio"
-                  name="other"
+                  name="gender"
                   id="other"
                   value="other"
                   label="Other"
                 />
                 <CFormCheck
                   type="radio"
-                  name="notDisclose"
+                  name="gender"
                   id="notDisclose"
                   value="not disclose"
-                  label="Donot wish to disclose"
+                  label="Do not wish to disclose"
                 />
               </CCol>
             </fieldset>
-            <CFormSelect id="inputCountry" label="Country">
-              <option>Choose...</option>
-              <option>...</option>
-            </CFormSelect>
+            <Select
+              id="country"
+              name="country"
+              label="country"
+              options={updatedCountries}
+              value={values.country}
+              onChange={(value) => {
+                setValues({ country: value, state: null, city: null }, false);
+              }}
+            >
+              {/* <option>Choose...</option>
+              <option>...</option> */}
+            </Select>
             <br></br>
-            <CFormSelect id="inputState" label="State">
-              <option>Choose...</option>
-              <option>...</option>
-            </CFormSelect>
+            <Select
+              label="State"
+              id="state"
+              name="state"
+              options={updatedStates(
+                values.country ? values.country.value : null
+              )}
+              value={values.state}
+              onChange={(value) => {
+                setValues({ state: value, city: null }, false);
+              }}
+            >
+              {/* <option>Choose...</option>
+              <option>...</option> */}
+            </Select>
             <br></br>
-            <CFormSelect id="inputCity" label="City">
-              <option>Choose...</option>
-              <option>...</option>
-            </CFormSelect>
+            <Select
+              label="City"
+              id="city"
+              name="city"
+              options={updatedCities(values.state ? values.state.value : null)}
+              value={values.city}
+              onChange={(value) => setFieldValue("city", value)}
+            >
+              {/* <option>Choose...</option>
+              <option>...</option> */}
+            </Select>
             <br></br>
             <CFormSelect
               id="industry"
@@ -118,7 +176,7 @@ const Mentorship = () => {
               <option>...</option>
             </CFormSelect>
             <br></br>
-            <CFormLabel htmlFor="exampleFormControlTextarea1">
+            <CFormLabel htmlFor="Current Job Position">
               What is your current job position? (e.g. student at IIT Delhi,
               software engineer at Intel, Secretary in Ministry of Health etc.)
               *
@@ -129,7 +187,37 @@ const Mentorship = () => {
               aria-label="Current Job Position"
             />
             <br></br>
+            <fieldset className="row mb-3">
+              <legend className="col-form-label col-sm-2 pt-0">
+                What would you like to sign up as?
+              </legend>
+              <CCol sm={10}>
+                <CFormCheck
+                  type="radio"
+                  name="mentorship"
+                  id="mentee"
+                  value="mentee"
+                  label="Mentee"
+                  defaultChecked
+                />
+                <CFormCheck
+                  type="radio"
+                  name="mentorship"
+                  id="mentor"
+                  value="mentor"
+                  label="Mentor"
+                />
+                <CFormCheck
+                  type="radio"
+                  name="mentorship"
+                  id="both"
+                  value="Both"
+                  label="Both"
+                />
+              </CCol>
+            </fieldset>
             <CButton type="submit">Submit Application</CButton>
+            <p>{JSON.stringify(csc.get)}</p>
           </CForm>
         </CCardBody>
       </CCard>
