@@ -14,7 +14,6 @@ router.post("/submitMentorshipForm", async (req, res) => {
     city: values.city,
     industry: values.industry,
     currentJobPosition: values.currentJobPosition,
-    signUpAs: values.signUpAs,
 
     deaf: values.deaf,
     SpecificLearningDisabilities: values.SpecificLearningDisabilities,
@@ -31,6 +30,22 @@ router.post("/submitMentorshipForm", async (req, res) => {
     mentalIllness: values.mentalIllness,
     slowLearners: values.slowLearners,
     autism: values.autism,
+
+    location: values.location,
+    mentorDisability: values.mentorDisability,
+    mentorGender: values.mentorGender,
+    mentorOccupation: values.mentorOccupation,
+
+    skills: values.skills,
+
+    skillsDescrpn: values.skillsDescrpn,
+    experience: values.experience,
+    qualities: values.qualities,
+    extraInfo: values.extraInfo,
+
+    introduction: values.introduction,
+    contact: values.contact,
+    agreement: values.agreement,
   });
   return res.status(200).json(formData);
 });

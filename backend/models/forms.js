@@ -11,7 +11,6 @@ const FormSchema = new Schema({
   city: Object,
   industry: String,
   currentJobPosition: String,
-  signUpAs: String,
   deaf: String,
   SpecificLearningDisabilities: String,
   hardOfHearing: String,
@@ -27,5 +26,19 @@ const FormSchema = new Schema({
   mentalIllness: String,
   slowLearners: String,
   autism: String,
+  location: String,
+  mentorDisability: String,
+  mentorGender: String,
+  mentorOccupation: String,
+  skills: String,
+
+  skillsDescrpn: String,
+  experience: Number,
+  qualities: String,
+  extraInfo: String,
+
+  introduction: String,
+  contact: Number,
+  agreement: String,
 });
 module.exports = User = mongoose.model("forms", FormSchema);

@@ -44,6 +44,20 @@ const Mentorship = (props) => {
       mentalIllness: "",
       slowLearners: "",
       autism: "",
+      location: "",
+      mentorDisability: "",
+      mentorGender: "",
+      mentorOccupation: "",
+
+      skills: "",
+      skillsDescrpn: "",
+      experience: null,
+      qualities: "",
+      extraInfo: "",
+
+      introduction: "",
+      contact: null,
+      agreement: "",
     },
     onSubmit: (values) => {
       const userId = props.auth.user.id;
@@ -353,7 +367,6 @@ const Mentorship = (props) => {
             <CFormLabel htmlFor="Current Job Position">
               What is your current job position? (e.g. student at IIT Delhi,
               software engineer at Intel, Secretary in Ministry of Health etc.)
-              *
             </CFormLabel>
             <CFormInput
               type="text"
@@ -365,44 +378,163 @@ const Mentorship = (props) => {
               required
             />
             <br></br>
+            <CFormLabel>
+              What of the following are important to you while being matched
+              with a mentee?{" "}
+            </CFormLabel>
+            <CFormCheck
+              name="menteeImportant"
+              label="Location"
+              value="Location"
+              onChange={() => setFieldValue("location", "yes")}
+            />
+            <CFormCheck
+              name="menteeImportant"
+              label="Disability"
+              value="mentorDisability"
+              onChange={() => setFieldValue("mentorDisability", "yes")}
+            />
+            <CFormCheck
+              name="menteeImportant"
+              label="Gender"
+              value="mentorGender"
+              onChange={() => setFieldValue("mentorGender", "yes")}
+            />
+            <CFormCheck
+              name="menteeImportant"
+              label="Sector/Occupation"
+              value="mentorOccupation"
+              onChange={() => setFieldValue("mentorOccupation", "yes")}
+            />
+            <br></br>
             <fieldset className="row mb-3">
               <legend className="col-form-label col-sm-2 pt-0">
-                What would you like to sign up as?
+                What kind of skills do you want help with?
               </legend>
               <CCol sm={10}>
                 <CFormCheck
                   type="radio"
-                  name="mentorship"
-                  id="mentee"
-                  value="mentee"
-                  label="Mentee"
-                  checked={values.signUpAs === "mentee"}
-                  onChange={() => setFieldValue("signUpAs", "mentee")}
+                  name="skills"
+                  id="hardSkills"
+                  value="hardSkills"
+                  label="Hard Skills"
+                  checked={values.skills === "hardSkills"}
+                  onChange={() => setFieldValue("skills", "hardSkills")}
                   required
                 />
                 <CFormCheck
                   type="radio"
-                  name="mentorship"
-                  id="mentor"
-                  value="mentor"
-                  label="Mentor"
-                  checked={values.signUpAs === "mentor"}
-                  onChange={() => setFieldValue("signUpAs", "mentor")}
+                  name="skills"
+                  id="softSkills"
+                  value="softSkills"
+                  label="Soft Skills"
+                  checked={values.skills === "softSkills"}
+                  onChange={() => setFieldValue("skills", "softSkills")}
                   required
                 />
                 <CFormCheck
                   type="radio"
-                  name="mentorship"
+                  name="skills"
                   id="both"
                   value="Both"
                   label="Both"
-                  checked={values.signUpAs === "both"}
-                  onChange={() => setFieldValue("signUpAs", "both")}
+                  checked={values.skills === "both"}
+                  onChange={() => setFieldValue("skills", "both")}
                   required
                 />
               </CCol>
             </fieldset>
-            <CButton type="submit">Submit Application</CButton>
+            <br></br>
+            <CFormLabel>
+              What skill(s) would you like to learn and/or connect about? In
+              general, explain your mentorship request. (e.g. interview
+              preparation, personal branding, basic software engineering,
+              understanding stock markets etc.)
+            </CFormLabel>
+            <CFormInput
+              type="text"
+              placeholder="Skills"
+              aria-label="skillsDescrpn"
+              id="skillsDescrpn"
+              onChange={Formik.handleChange}
+              value={Formik.values.skillsDescrpn}
+              required
+            />
+            <br></br>
+            <CFormLabel>
+              Relevant work experience ( number of years ).
+            </CFormLabel>
+            <CFormInput
+              type="number"
+              placeholder="Experience"
+              aria-label="experience"
+              id="experience"
+              onChange={Formik.handleChange}
+              value={Formik.values.experience}
+              required
+            />
+            <br></br>
+            <CFormLabel>
+              Are there specific qualities you want in your mentor other than
+              what you have already indicated above? (e.g. a person with
+              experience in Microsoft Excel, a person working at Facebook etc.)
+            </CFormLabel>
+            <CFormInput
+              type="text"
+              placeholder="Qualities"
+              aria-label="qualities"
+              id="qualities"
+              onChange={Formik.handleChange}
+              value={Formik.values.qualities}
+            />
+            <br></br>
+            <CFormLabel>
+              Let us know anything else that will be helpful to match you.
+            </CFormLabel>
+            <CFormInput
+              type="text"
+              placeholder="Extra Info"
+              aria-label="extraInfo"
+              id="extraInfo"
+              onChange={Formik.handleChange}
+              value={Formik.values.extraInfo}
+            />
+            <br></br>
+            <CFormLabel>
+              How would you like to be intro'd? Tell us whatever you'd like to
+              share with your matches. (e.g. "I am Abc and am looking forward to
+              learn about Xyz")
+            </CFormLabel>
+            <CFormInput
+              type="text"
+              placeholder="Introduction"
+              aria-label="introduction"
+              id="introduction"
+              onChange={Formik.handleChange}
+              value={Formik.values.introduction}
+            />
+            <br></br>
+            <CFormLabel>Provide your contact number.</CFormLabel>
+            <CFormInput
+              type="number"
+              placeholder="Contact Number"
+              aria-label="Contact Number"
+              id="ContactNumber"
+              onChange={Formik.handleChange}
+              value={Formik.values.contact}
+              required
+            />
+            <br></br>
+            <CFormCheck
+              name="agreement"
+              label="By signing up as a mentee, I understand that I need help with the specific area indicated on this application within the next two weeks. I also agree that I will respect the mentor's time and will not reschedule or cancel unless absolutely necessary. If I miss or cancel meetings more than twice, I understand that I will lose access to this service.
+"
+              value="agreement"
+              onChange={() => setFieldValue("agreement", "yes")}
+              required
+            />
+            <br></br>
+            <CButton type="submit">Submit Form</CButton>
             <p>{JSON.stringify(csc.get)}</p>
           </CForm>
         </CCardBody>
