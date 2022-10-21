@@ -126,6 +126,7 @@ const Mentorship = () => {
                 />
               </CCol>
             </fieldset>
+            <CFormLabel htmlFor="country">Country</CFormLabel>
             <Select
               id="country"
               name="country"
@@ -135,11 +136,9 @@ const Mentorship = () => {
               onChange={(value) => {
                 setValues({ country: value, state: null, city: null }, false);
               }}
-            >
-              {/* <option>Choose...</option>
-              <option>...</option> */}
-            </Select>
+            ></Select>
             <br></br>
+            <CFormLabel htmlFor="state">State</CFormLabel>
             <Select
               label="State"
               id="state"
@@ -151,11 +150,9 @@ const Mentorship = () => {
               onChange={(value) => {
                 setValues({ state: value, city: null }, false);
               }}
-            >
-              {/* <option>Choose...</option>
-              <option>...</option> */}
-            </Select>
+            ></Select>
             <br></br>
+            <CFormLabel htmlFor="city">City</CFormLabel>
             <Select
               label="City"
               id="city"
@@ -163,17 +160,28 @@ const Mentorship = () => {
               options={updatedCities(values.state ? values.state.value : null)}
               value={values.city}
               onChange={(value) => setFieldValue("city", value)}
-            >
-              {/* <option>Choose...</option>
-              <option>...</option> */}
-            </Select>
+            ></Select>
             <br></br>
             <CFormSelect
               id="industry"
               label="Industry/work you are interested in"
             >
-              <option>Choose...</option>
-              <option>...</option>
+              <option>Engineering and Architecture</option>
+              <option>Sales and Marketing</option>
+              <option>Hospitality and Event Planning</option>
+              <option>Human Resources</option>
+              <option>Logistics and Supply Chain Management</option>
+              <option>Mathematics and Statistics</option>
+              <option>Law</option>
+              <option>Hospital and Healthcare</option>
+              <option>Entertainment</option>
+              <option>Social Sector and Non-profit</option>
+              <option>Administration</option>
+              <option>Journalism</option>
+              <option>IT and Services</option>
+              <option>Academia</option>
+              <option>Natural Sciences</option>
+              <option>Finance and Banking</option>
             </CFormSelect>
             <br></br>
             <CFormLabel htmlFor="Current Job Position">
