@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   CAvatar,
   CBadge,
@@ -24,77 +24,95 @@ import CIcon from "@coreui/icons-react";
 
 import avatar8 from "./../../assets/images/avatars/8.jpg";
 
-const AppHeaderDropdown = () => {
-  return (
-    <CDropdown variant="nav-item">
-      <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>
-        <CAvatar src={avatar8} size="md" />
-      </CDropdownToggle>
-      <CDropdownMenu className="pt-0" placement="bottom-end">
-        <CDropdownHeader className="bg-light fw-semibold py-2">
-          Account
-        </CDropdownHeader>
-        <CDropdownItem href="#">
-          <CIcon icon={cilBell} className="me-2" />
-          Updates
-          <CBadge color="info" className="ms-2">
-            42
-          </CBadge>
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilEnvelopeOpen} className="me-2" />
-          Messages
-          <CBadge color="success" className="ms-2">
-            42
-          </CBadge>
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilTask} className="me-2" />
-          Tasks
-          <CBadge color="danger" className="ms-2">
-            42
-          </CBadge>
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilCommentSquare} className="me-2" />
-          Comments
-          <CBadge color="warning" className="ms-2">
-            42
-          </CBadge>
-        </CDropdownItem>
-        <CDropdownHeader className="bg-light fw-semibold py-2">
-          Settings
-        </CDropdownHeader>
-        <CDropdownItem href="#">
-          <CIcon icon={cilUser} className="me-2" />
-          Profile
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilSettings} className="me-2" />
-          Settings
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilCreditCard} className="me-2" />
-          Payments
-          <CBadge color="secondary" className="ms-2">
-            42
-          </CBadge>
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilFile} className="me-2" />
-          Projects
-          <CBadge color="primary" className="ms-2">
-            42
-          </CBadge>
-        </CDropdownItem>
-        <CDropdownDivider />
-        <CDropdownItem href="#">
-          <CIcon icon={cilLockLocked} className="me-2" />
-          Lock Account
-        </CDropdownItem>
-      </CDropdownMenu>
-    </CDropdown>
-  );
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
+
+class AppHeaderDropdown extends Component {
+  onLogoutClick = (e) => {
+    e.preventDefault();
+    this.props.logoutUser();
+  };
+  render() {
+    return (
+      <CDropdown variant="nav-item">
+        <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>
+          <CAvatar src={avatar8} size="md" />
+        </CDropdownToggle>
+        <CDropdownMenu className="pt-0" placement="bottom-end">
+          <CDropdownHeader className="bg-light fw-semibold py-2">
+            Account
+          </CDropdownHeader>
+          <CDropdownItem href="#">
+            <CIcon icon={cilBell} className="me-2" />
+            Updates
+            <CBadge color="info" className="ms-2">
+              42
+            </CBadge>
+          </CDropdownItem>
+          <CDropdownItem href="#">
+            <CIcon icon={cilEnvelopeOpen} className="me-2" />
+            Messages
+            <CBadge color="success" className="ms-2">
+              42
+            </CBadge>
+          </CDropdownItem>
+          <CDropdownItem href="#">
+            <CIcon icon={cilTask} className="me-2" />
+            Tasks
+            <CBadge color="danger" className="ms-2">
+              42
+            </CBadge>
+          </CDropdownItem>
+          <CDropdownItem href="#">
+            <CIcon icon={cilCommentSquare} className="me-2" />
+            Comments
+            <CBadge color="warning" className="ms-2">
+              42
+            </CBadge>
+          </CDropdownItem>
+          <CDropdownHeader className="bg-light fw-semibold py-2">
+            Settings
+          </CDropdownHeader>
+          <CDropdownItem href="#">
+            <CIcon icon={cilUser} className="me-2" />
+            Profile
+          </CDropdownItem>
+          <CDropdownItem href="#">
+            <CIcon icon={cilSettings} className="me-2" />
+            Settings
+          </CDropdownItem>
+          <CDropdownItem href="#">
+            <CIcon icon={cilCreditCard} className="me-2" />
+            Payments
+            <CBadge color="secondary" className="ms-2">
+              42
+            </CBadge>
+          </CDropdownItem>
+          <CDropdownItem href="#">
+            <CIcon icon={cilFile} className="me-2" />
+            Projects
+            <CBadge color="primary" className="ms-2">
+              42
+            </CBadge>
+          </CDropdownItem>
+          <CDropdownDivider />
+          <CDropdownItem href="#" onClick={this.onLogoutClick}>
+            <CIcon icon={cilLockLocked} className="me-2" />
+            Logout
+          </CDropdownItem>
+        </CDropdownMenu>
+      </CDropdown>
+    );
+  }
+}
+AppHeaderDropdown.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
-export default AppHeaderDropdown;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logoutUser })(AppHeaderDropdown);
