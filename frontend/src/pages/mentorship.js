@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import csc from "country-state-city";
 import Select from "react-select";
+import axios from "axios";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import {
   CCard,
   CCardBody,
@@ -15,7 +18,7 @@ import {
   CFormInput,
 } from "@coreui/react";
 
-const Mentorship = () => {
+const Mentorship = (props) => {
   const Formik = useFormik({
     initialValues: {
       disability: "",
@@ -27,11 +30,19 @@ const Mentorship = () => {
       currentJobPosition: "",
       signUpAs: "",
     },
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => {
+      const userId = props.auth.user.id;
+      axios
+        .post("/api/forms/submitMentorshipForm", { values, userId })
+        .then((res) => {
+          console.log("Mentorship form submission succeeded. Res: ", res);
+        })
+        .catch((err) => {
+          console.log("Error while submitting Mentorship form ", err);
+        });
+    },
   });
-
   const countries = csc.getAllCountries();
-
   const updatedCountries = countries.map((country) => ({
     label: country.name,
     value: country.id,
@@ -282,5 +293,11 @@ const Mentorship = () => {
     </>
   );
 };
+Mentorship.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
 
-export default Mentorship;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps)(Mentorship);
