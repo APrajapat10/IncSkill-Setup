@@ -191,106 +191,110 @@ const Mentorship = (props) => {
               </CCol>
             </fieldset>
             <br></br>
-            <CFormLabel htmlFor="disabilityNature">
-              What is the nature of your disability?{" "}
-            </CFormLabel>
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Hearing impaired: deaf"
-              value="Hearing impaired: deaf"
-              onChange={() => setFieldValue("deaf", "yes")}
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Specific learning disabilities"
-              value="Specific learning disabilities"
-              onChange={() =>
-                setFieldValue("SpecificLearningDisabilities", "yes")
-              }
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Hearing Impaired: hard of hearing"
-              value="Hearing Impaired: hard of hearing"
-              onChange={() => setFieldValue("hardOfHearing", "yes")}
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Blindness"
-              value="Blindness"
-              onChange={() => setFieldValue("blindness", "yes")}
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Muscular dystrophy"
-              value="Muscular dystrophy"
-              onChange={() => setFieldValue("muscularDystrophy", "yes")}
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Cerebral Palsy"
-              value="Cerebral Palsy"
-              onChange={() => setFieldValue("cerebralPalsy", "yes")}
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Locomotor including Orthopedic Disability
+            {values.disability === "Yes" && (
+              <div>
+                <CFormLabel htmlFor="disabilityNature">
+                  What is the nature of your disability?{" "}
+                </CFormLabel>
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Hearing impaired: deaf"
+                  value="Hearing impaired: deaf"
+                  onChange={() => setFieldValue("deaf", "yes")}
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Specific learning disabilities"
+                  value="Specific learning disabilities"
+                  onChange={() =>
+                    setFieldValue("SpecificLearningDisabilities", "yes")
+                  }
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Hearing Impaired: hard of hearing"
+                  value="Hearing Impaired: hard of hearing"
+                  onChange={() => setFieldValue("hardOfHearing", "yes")}
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Blindness"
+                  value="Blindness"
+                  onChange={() => setFieldValue("blindness", "yes")}
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Muscular dystrophy"
+                  value="Muscular dystrophy"
+                  onChange={() => setFieldValue("muscularDystrophy", "yes")}
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Cerebral Palsy"
+                  value="Cerebral Palsy"
+                  onChange={() => setFieldValue("cerebralPalsy", "yes")}
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Locomotor including Orthopedic Disability
 "
-              onChange={() => setFieldValue("orthopedicDisability", "yes")}
-              value="Locomotor including Orthopedic Disability"
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Speech and language disability
+                  onChange={() => setFieldValue("orthopedicDisability", "yes")}
+                  value="Locomotor including Orthopedic Disability"
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Speech and language disability
 "
-              onChange={() => setFieldValue("speechDisability", "yes")}
-              value="Speech and language disability
+                  onChange={() => setFieldValue("speechDisability", "yes")}
+                  value="Speech and language disability
 "
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Leprosy Cured"
-              value="Leprosy Cured"
-              onChange={() => setFieldValue("leprosy", "yes")}
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Low Vision"
-              value="Low Vision"
-              onChange={() => setFieldValue("lowVision", "yes")}
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Acid Attack victims"
-              value="Acid Attack victims"
-              onChange={() => setFieldValue("acidAttack", "yes")}
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Dwarfism"
-              value="Dwarfism"
-              onChange={() => setFieldValue("dwarfism", "yes")}
-            />
-            <CFormCheck
-              id="flexCheckDefault"
-              label="Mental Illness
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Leprosy Cured"
+                  value="Leprosy Cured"
+                  onChange={() => setFieldValue("leprosy", "yes")}
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Low Vision"
+                  value="Low Vision"
+                  onChange={() => setFieldValue("lowVision", "yes")}
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Acid Attack victims"
+                  value="Acid Attack victims"
+                  onChange={() => setFieldValue("acidAttack", "yes")}
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Dwarfism"
+                  value="Dwarfism"
+                  onChange={() => setFieldValue("dwarfism", "yes")}
+                />
+                <CFormCheck
+                  id="flexCheckDefault"
+                  label="Mental Illness
 "
-              onChange={() => setFieldValue("mentalIllness", "yes")}
-              value="Mental Illness
+                  onChange={() => setFieldValue("mentalIllness", "yes")}
+                  value="Mental Illness
 "
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              onChange={() => setFieldValue("slowLearners", "yes")}
-              label="Intellectual Disability/Slow Learners"
-              value="Intellectual Disability/Slow Learners"
-            />
-            <CFormCheck
-              name="flexCheckDefault"
-              label="Autism spectrum disorder"
-              value="Autism spectrum disorder"
-              onChange={() => setFieldValue("autism", "yes")}
-            />
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  onChange={() => setFieldValue("slowLearners", "yes")}
+                  label="Intellectual Disability/Slow Learners"
+                  value="Intellectual Disability/Slow Learners"
+                />
+                <CFormCheck
+                  name="flexCheckDefault"
+                  label="Autism spectrum disorder"
+                  value="Autism spectrum disorder"
+                  onChange={() => setFieldValue("autism", "yes")}
+                />
+              </div>
+            )}
             <br></br>
             <CFormLabel htmlFor="country">Country</CFormLabel>
             <Select
