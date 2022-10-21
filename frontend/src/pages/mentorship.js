@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import csc from "country-state-city";
 import Select from "react-select";
@@ -64,13 +65,14 @@ const Mentorship = (props) => {
       axios
         .post("/api/forms/submitMentorshipForm", { values, userId })
         .then((res) => {
-          console.log("Mentorship form submission succeeded. Res: ", res);
+          history.push("/mentorship/formSubmitted");
         })
         .catch((err) => {
           console.log("Error while submitting Mentorship form ", err);
         });
     },
   });
+  const history = useHistory();
   const countries = csc.getAllCountries();
   const updatedCountries = countries.map((country) => ({
     label: country.name,
