@@ -15,6 +15,22 @@ router.post("/submitMentorshipForm", async (req, res) => {
     industry: values.industry,
     currentJobPosition: values.currentJobPosition,
     signUpAs: values.signUpAs,
+
+    deaf: values.deaf,
+    SpecificLearningDisabilities: values.SpecificLearningDisabilities,
+    hardOfHearing: values.hardOfHearing,
+    blindness: values.blindness,
+    muscularDystrophy: values.muscularDystrophy,
+    cerebralPalsy: values.cerebralPalsy,
+    orthopedicDisability: values.orthopedicDisability,
+    speechDisability: values.speechDisability,
+    leprosy: values.leprosy,
+    lowVision: values.lowVision,
+    acidAttack: values.acidAttack,
+    dwarfism: values.dwarfism,
+    mentalIllness: values.mentalIllness,
+    slowLearners: values.slowLearners,
+    autism: values.autism,
   });
   return res.status(200).json(formData);
 });
