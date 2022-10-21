@@ -16,13 +16,18 @@ import {
 } from "@coreui/react";
 
 const Mentorship = () => {
-  const addressFromik = useFormik({
+  const Formik = useFormik({
     initialValues: {
-      country: "United States",
+      disability: "",
+      gender: "",
+      country: "",
       state: null,
       city: null,
+      industry: null,
+      currentJobPosition: "",
+      signUpAs: "",
     },
-    onSubmit: (values) => console.log(JSON.stringify(values)),
+    onSubmit: (values) => console.log(values),
   });
 
   const countries = csc.getAllCountries();
@@ -41,7 +46,7 @@ const Mentorship = () => {
       .getCitiesOfState(stateId)
       .map((city) => ({ label: city.name, value: city.id, ...city }));
 
-  const { values, handleSubmit, setFieldValue, setValues } = addressFromik;
+  const { values, handleSubmit, setFieldValue } = Formik;
 
   useEffect(() => {}, [values]);
   return (
@@ -74,7 +79,8 @@ const Mentorship = () => {
                   id="nameRadio1"
                   value="yes"
                   label="Yes"
-                  defaultChecked
+                  defaultChecked={values.disability === "Yes"}
+                  onChange={() => setFieldValue("disability", "Yes")}
                 />
                 <CFormCheck
                   type="radio"
@@ -82,6 +88,8 @@ const Mentorship = () => {
                   id="nameRadio2"
                   value="no"
                   label="No"
+                  defaultChecked={values.disability === "No"}
+                  onChange={() => setFieldValue("disability", "No")}
                 />
                 <CFormCheck
                   type="radio"
@@ -89,6 +97,8 @@ const Mentorship = () => {
                   id="nameRadio3"
                   value="not disclose"
                   label="Do not wish to disclose"
+                  defaultChecked={values.disability === "not disclose"}
+                  onChange={() => setFieldValue("disability", "not disclose")}
                 />
               </CCol>
             </fieldset>
@@ -101,7 +111,8 @@ const Mentorship = () => {
                   id="male"
                   value="male"
                   label="Male"
-                  defaultChecked
+                  checked={values.gender === "male"}
+                  onChange={() => setFieldValue("gender", "male")}
                 />
                 <CFormCheck
                   type="radio"
@@ -109,6 +120,8 @@ const Mentorship = () => {
                   id="female"
                   value="female"
                   label="Female"
+                  checked={values.gender === "female"}
+                  onChange={() => setFieldValue("gender", "female")}
                 />
                 <CFormCheck
                   type="radio"
@@ -116,6 +129,8 @@ const Mentorship = () => {
                   id="other"
                   value="other"
                   label="Other"
+                  checked={values.gender === "other"}
+                  onChange={() => setFieldValue("gender", "other")}
                 />
                 <CFormCheck
                   type="radio"
@@ -123,6 +138,8 @@ const Mentorship = () => {
                   id="notDisclose"
                   value="not disclose"
                   label="Do not wish to disclose"
+                  checked={values.gender === "not disclose"}
+                  onChange={() => setFieldValue("gender", "not disclose")}
                 />
               </CCol>
             </fieldset>
@@ -133,9 +150,7 @@ const Mentorship = () => {
               label="country"
               options={updatedCountries}
               value={values.country}
-              onChange={(value) => {
-                setValues({ country: value, state: null, city: null }, false);
-              }}
+              onChange={(value) => setFieldValue("country", value)}
             ></Select>
             <br></br>
             <CFormLabel htmlFor="state">State</CFormLabel>
@@ -147,9 +162,7 @@ const Mentorship = () => {
                 values.country ? values.country.value : null
               )}
               value={values.state}
-              onChange={(value) => {
-                setValues({ state: value, city: null }, false);
-              }}
+              onChange={(value) => setFieldValue("state", value)}
             ></Select>
             <br></br>
             <CFormLabel htmlFor="city">City</CFormLabel>
@@ -165,23 +178,37 @@ const Mentorship = () => {
             <CFormSelect
               id="industry"
               label="Industry/work you are interested in"
+              value={Formik.values.industry}
+              onChange={Formik.handleChange}
             >
-              <option>Engineering and Architecture</option>
-              <option>Sales and Marketing</option>
-              <option>Hospitality and Event Planning</option>
-              <option>Human Resources</option>
-              <option>Logistics and Supply Chain Management</option>
-              <option>Mathematics and Statistics</option>
-              <option>Law</option>
-              <option>Hospital and Healthcare</option>
-              <option>Entertainment</option>
-              <option>Social Sector and Non-profit</option>
-              <option>Administration</option>
-              <option>Journalism</option>
-              <option>IT and Services</option>
-              <option>Academia</option>
-              <option>Natural Sciences</option>
-              <option>Finance and Banking</option>
+              <option value="Engineering and Architecture">
+                Engineering and Architecture
+              </option>
+              <option value="Sales and Marketing">Sales and Marketing</option>
+              <option value="Hospitality and Event Planning">
+                Hospitality and Event Planning
+              </option>
+              <option value="Human Resources">Human Resources</option>
+              <option value="Logistics and Supply Chain Management">
+                Logistics and Supply Chain Management
+              </option>
+              <option value="Mathematics and Statistics">
+                Mathematics and Statistics
+              </option>
+              <option value="Law">Law</option>
+              <option value="Hospital and Healthcare">
+                Hospital and Healthcare
+              </option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Social Sector and Non-profit">
+                Social Sector and Non-profit
+              </option>
+              <option value="Administration">Administration</option>
+              <option value="Journalism">Journalism</option>
+              <option value="IT and Services">IT and Services</option>
+              <option value="Academia">Academia</option>
+              <option value="Natural Sciences">Natural Sciences</option>
+              <option value="Finance and Banking">Finance and Banking</option>
             </CFormSelect>
             <br></br>
             <CFormLabel htmlFor="Current Job Position">
@@ -193,6 +220,9 @@ const Mentorship = () => {
               type="text"
               placeholder="Current Job Position"
               aria-label="Current Job Position"
+              id="currentJobPosition"
+              onChange={Formik.handleChange}
+              value={Formik.values.currentJobPosition}
             />
             <br></br>
             <fieldset className="row mb-3">
@@ -206,7 +236,8 @@ const Mentorship = () => {
                   id="mentee"
                   value="mentee"
                   label="Mentee"
-                  defaultChecked
+                  checked={values.signUpAs === "mentee"}
+                  onChange={() => setFieldValue("signUpAs", "mentee")}
                 />
                 <CFormCheck
                   type="radio"
@@ -214,6 +245,8 @@ const Mentorship = () => {
                   id="mentor"
                   value="mentor"
                   label="Mentor"
+                  checked={values.signUpAs === "mentor"}
+                  onChange={() => setFieldValue("signUpAs", "mentor")}
                 />
                 <CFormCheck
                   type="radio"
@@ -221,6 +254,8 @@ const Mentorship = () => {
                   id="both"
                   value="Both"
                   label="Both"
+                  checked={values.signUpAs === "both"}
+                  onChange={() => setFieldValue("signUpAs", "both")}
                 />
               </CCol>
             </fieldset>
