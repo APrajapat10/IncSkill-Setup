@@ -55,16 +55,15 @@ const Opportunities = (props) => {
       needHelp: "",
     },
     onSubmit: (values) => {
-      // const userId = props.auth.user.id;
-      console.log("values are : ", values);
-      // axios
-      //   .post("/api/forms/submitMentorshipForm", { values, userId })
-      //   .then((res) => {
-      //     history.push("/mentorship/formSubmitted");
-      //   })
-      //   .catch((err) => {
-      //     console.log("Error while submitting Mentorship form ", err);
-      //   });
+      const userId = props.auth.user.id;
+      axios
+        .post("/api/forms/submitOpportunitiesForm", { values, userId })
+        .then((res) => {
+          history.push("/opportunities/formSubmitted");
+        })
+        .catch((err) => {
+          console.log("Error while submitting Opportunities form ", err);
+        });
     },
   });
   const history = useHistory();
