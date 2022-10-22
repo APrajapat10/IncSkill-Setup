@@ -64,13 +64,13 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: "Corporates",
-    to: "/charts",
+    name: "Opportunities",
+    to: "/opportunities",
     icon: <CIcon customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: "Opportunities",
+    name: "Corporates",
     to: "/charts",
     icon: <CIcon customClassName="nav-icon" />,
   },
