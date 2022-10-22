@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -16,7 +16,9 @@ import {
   CFormLabel,
   CFormInput,
 } from "@coreui/react";
-
+import { storage } from "../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
 const Opportunities = (props) => {
   const Formik = useFormik({
     initialValues: {
@@ -56,18 +58,26 @@ const Opportunities = (props) => {
     },
     onSubmit: (values) => {
       const userId = props.auth.user.id;
-      axios
-        .post("/api/forms/submitOpportunitiesForm", { values, userId })
-        .then((res) => {
-          history.push("/opportunities/formSubmitted");
-        })
-        .catch((err) => {
-          console.log("Error while submitting Opportunities form ", err);
+
+      if (resume === null) return;
+
+      const fileRef = ref(storage, `resume/${resume.name}`);
+      uploadBytes(fileRef, resume).then((res) => {
+        getDownloadURL(fileRef).then((url) => {
+          axios
+            .post("/api/forms/submitOpportunitiesForm", { values, userId, url })
+            .then((res) => {
+              history.push("/opportunities/formSubmitted");
+            })
+            .catch((err) => {
+              console.log("Error while submitting Opportunities form ", err);
+            });
         });
+      });
     },
   });
   const history = useHistory();
-
+  const [resume, setResume] = useState("");
   const { values, handleSubmit, setFieldValue } = Formik;
 
   useEffect(() => {}, [values]);
@@ -474,6 +484,15 @@ const Opportunities = (props) => {
               id="portfolio"
               onChange={Formik.handleChange}
               value={Formik.values.portfolio}
+            />
+            <br></br>
+            <CFormLabel>Upload your latest Resume</CFormLabel>
+            <CFormInput
+              type="file"
+              id="validationTextarea"
+              aria-label="file example"
+              required
+              onChange={(e) => setResume(e.target.files[0])}
             />
             <br></br>
             <fieldset className="row mb-3">

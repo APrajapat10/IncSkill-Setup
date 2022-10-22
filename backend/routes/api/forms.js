@@ -52,10 +52,10 @@ router.post("/submitMentorshipForm", async (req, res) => {
 });
 
 router.post("/submitOpportunitiesForm", async (req, res) => {
-  const { values, userId } = req.body;
+  const { values, userId, url } = req.body;
   const formData = await opportunitiesForm.create({
     userId: userId,
-
+    url: url,
     seeking: values.seeking,
     nature: values.nature,
     industry: values.industry,

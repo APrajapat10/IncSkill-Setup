@@ -17,6 +17,7 @@
     "classnames": "^2.3.2",
     "core-js": "^3.24.1",
     "country-state-city": "^1.0.4",
+    "firebase": "^9.12.1",
     "formik": "^2.2.9",
     "is-empty": "^1.2.0",
     "jwt-decode": "^3.1.2",
@@ -31,6 +32,7 @@
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "simplebar-react": "^2.4.1",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {

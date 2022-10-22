@@ -37,6 +37,7 @@ const OpportunitiesFormSchema = new Schema({
   portfolio: String,
 
   needHelp: String,
+  url: String,
 });
 module.exports = Opportunities = mongoose.model(
   "opportunitiesForm",
